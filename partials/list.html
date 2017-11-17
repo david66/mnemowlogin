@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <div class="table-heading"><h4>Lista de Incidencias</h4></div>
+    <div class="table-content table-responsive">
+        <table class="table table-hover table-striped ">
+            <thead>
+            <tr>
+                <th>Detalle</th>
+                <th>Editar</th>
+                <th>Autor</th>
+                <th>fecha</th>
+                <th>email</th>
+                <th>prioridad</th>
+                <th>asunto</th>
+                <th>estado</th>
+                <th><a href="#/new"><i class="icon-plus-sign"></i></a></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="project in projects | filter:search | orderBy:'autor'" ng-show="project._id.$oid">
+                <td>
+                    <a href="#/view/{{project._id.$oid}}">
+                        <button class="btn btn-default"><i class="glyphicon glyphicon-eye-open"></i></button>
+                    </a>
+                </td>
+                <td>
+                    <a href="#/edit/{{project._id.$oid}}">
+                        <button class="btn btn-default"><i class="glyphicon glyphicon-edit"></i></button>
+                    </a>
+                </td>
+                <td>{{project.autor}}</td>
+                <td>{{project.fecha}}</td>
+                <td>{{project.email}}</td>
+                <td>{{project.prioridad}}</td>
+                <td>{{project.asunto}}</td>
+                <td>{{project.estadoHistorico.estado}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

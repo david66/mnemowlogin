@@ -1,0 +1,80 @@
+<div class="container-fluid">
+
+    <div id="messages" class="alert alert-success form-content" data-ng-show="messages" role="alert"
+         data-ng-show="messages" data-ng-bind="messages"></div>
+
+    <div class="row table-heading"><h4>Nuevo Ticket</h4></div>
+    <div class="row table-content">
+
+        <form name="myForm" novalidate role="form">
+            <div class="form-group col-md-9">
+                <label for="asunto">Asunto </label>
+                <span class="label label-danger" ng-show="myForm.asunto.$error.required"
+                      class="help-inline">Required</span>
+                <input type="text" name="asunto" data-ng-model="project.asunto" class="form-control" required/>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="fecha">Fecha </label>
+                <span class="label label-danger" ng-show="myForm.fecha.$error.required"
+                      class="help-inline">Required</span>
+                <span class="label label-danger" ng-show="myForm.fecha.$error.date"
+                      class="help-inline">Not a DATE</span>
+                <p class="input-group">
+                    <input type="text" name="fecha" data-ng-model="project.fecha" class="form-control"
+                           datepicker-popup="{{format}}" is-open="$parent.opened" min-date="2000-01-01"
+                           max-date="'2016-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)"
+                           close-text="Close" required/>
+                    <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                        class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="autor">Autor </label>
+                <span class="label label-danger" ng-show="myForm.autor.$error.required"
+                      class="help-inline">Required</span>
+                <input type="text" name="autor" data-ng-model="project.autor" class="form-control" required/>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="email">E-mail</label>
+                <span class="label label-danger" ng-show="myForm.email.$error.required"
+                      class="help-inline">Required</span>
+                <span class="label label-danger" ng-show="myForm.email.$error.email"
+                      class="help-inline">Not a EMAIL</span>
+                <input type="email" name="email" data-ng-model="project.email" class="form-control" required/>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="prioridad">Prioridad</label>
+                <span class="label label-danger" data-ng-show="submitted && myForm.project.prioridad.$error.required">Required!</span>
+                <select name="prioridad" data-ng-model="project.prioridad"
+                        data-ng-options="id as value for (id, value) in prioridadListOptions" class="form-control"
+                        required>
+                    <option value=""></option>
+                </select>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="descripcion">Descripcion</label>
+                <span class="label label-danger" ng-show="myForm.descripcion.$error.required" class="help-inline">Required</span>
+                <textarea name="descripcion" data-ng-model="project.descripcion" class="form-control"
+                          required></textarea>
+            </div>
+            <div class="form-group col-md-2 pull-left ">
+                <a href="#/">
+                    <button class="btn btn-default btn-block"><i class="glyphicon glyphicon-remove"></i> Cancel</button>
+                </a>
+            </div>
+
+            <div class="form-group col-md-2 pull-left ">
+                <button ng-click="destroy()" ng-show="project._id" class="btn btn-danger btn-block"><i
+                        class="glyphicon glyphicon-trash"></i> Borrar</button>
+            </div>
+            <div class="form-group col-md-3 pull-right ">
+                <button ng-click="save()" ng-disabled="isClean() || myForm.$invalid" class="btn btn-primary btn-block">
+                    <i class="glyphicon glyphicon-ok"></i> Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+

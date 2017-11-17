@@ -1,0 +1,72 @@
+<div class="container-fluid">
+
+    <div id="messages" class="alert alert-success form-content" data-ng-show="messages" role="alert"
+         data-ng-show="messages" data-ng-bind="messages"></div>
+
+    <div class="row table-heading"><h4>Modificar Incidencia</h4></div>
+    <div class="row table-content">
+
+            <div class="form-group col-md-9">
+                <label for="asunto">Asunto </label>
+                <input type="text" name="asunto" data-ng-model="project.asunto" class="form-control" disabled/>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="fecha">Fecha </label>
+                <p class="input-group">
+                    <input type="text" name="fecha" data-ng-model="project.fecha" class="form-control" disabled/>
+                    <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" disabled><i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </span>
+                </p>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="autor">Autor </label>
+                <input type="text" name="autor" data-ng-model="project.autor" class="form-control" disabled/>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="email">E-mail</label>
+                <span class="label label-danger" ng-show="myForm.email.$error.email" class="help-inline">Not a EMAIL</span>
+                <p class="input-group">
+                    <input type="email" name="email" data-ng-model="project.email" class="form-control" disabled/>
+		            <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" disabled><i class="glyphicon glyphicon-envelope" disabled></i></button>
+                    </span>
+                </p>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="prioridad">Prioridad</label>
+                <select name="prioridad" data-ng-model="project.name" data-ng-options="id as value for (id, value) in prioridadListOptions" class="form-control" disabled>
+                    <option value=""></option>
+                </select>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="descripcion">Descripcion</label>
+                <pre>{{project.descripcion}}</pre>
+            </div>
+        <form name="myForm" novalidate role="form">
+            <div class="form-group col-md-3">
+                <label for="estado">Estado </label>
+                <span class="label label-danger" ng-show="myForm.estadoHistorico.estado.$error.required" class="help-inline">Required</span>
+                    <select name="estado" data-ng-model="project.estadoHistorico.estado" data-ng-options="id as value for (id, value) in estadoListOptions" class="form-control" required/>
+                    <option value=""></option>
+                    </select>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="comentario">Comentario</label>
+                <span class="label label-danger" ng-show="myForm.estadoHistorico.comentario.$error.required" class="help-inline">Required</span>
+                <textarea name="comentario" data-ng-model="project.estadoHistorico.comentario" class="form-control" required></textarea>
+            </div>
+            <div class="form-group col-md-2 pull-left ">
+                <a href="#/list">
+                    <button class="btn btn-default btn-block"><i class="glyphicon glyphicon-remove"></i> Cancel</button>
+                </a>
+            </div>
+            <div class="form-group col-md-3 pull-right ">
+                <button ng-click="save()" ng-disabled="isClean() || myForm.$invalid" class="btn btn-primary btn-block">
+                    <i class="glyphicon glyphicon-ok"></i> Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
